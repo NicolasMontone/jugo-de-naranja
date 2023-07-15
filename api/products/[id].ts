@@ -4,7 +4,7 @@ import type {
   VercelResponse,
 } from '@vercel/node'
 import axios from 'axios'
-import { ProductResponse } from '../../lib/types'
+import { ProductResponse } from '../_lib/types'
 
 const handler: VercelApiHandler = async (
   req: VercelRequest,
