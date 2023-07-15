@@ -10,7 +10,15 @@ const handler: VercelApiHandler = async (
   req: VercelRequest,
   res: VercelResponse,
 ) => {
-  console.log(req.body)
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' })
+    return
+  }
+
+  if (!req.body.code) {
+    res.status(400).json({ error: 'Missing code' })
+    return
+  }
 
   const { data: productResponse } = await axios.get<ProductResponse>(
     `https://go-upc.com/api/v1/code/${req.body.code}?key=${process.env.GO_UPC_API_KEY}`,
