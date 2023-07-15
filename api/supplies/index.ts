@@ -1,7 +1,13 @@
 import { VercelApiHandler, VercelRequest, VercelResponse } from '@vercel/node'
 import axios from 'axios'
-import { supabase } from '../_lib/supabase'
 import { ProductResponse } from '../_lib/types'
+
+import { createClient } from '@supabase/supabase-js'
+
+export const supabase = createClient(
+  process.env.SUPABASE_PROJECT_URL || '',
+  process.env.SUPABASE_API_KEY || '',
+)
 
 const handler: VercelApiHandler = async (
   req: VercelRequest,
