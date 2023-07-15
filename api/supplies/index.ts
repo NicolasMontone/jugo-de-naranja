@@ -30,9 +30,9 @@ const handler: VercelApiHandler = async (
 
     const { name, imageUrl, category, brand } = productResponse.product
 
-    const { data, error } = await supabase
-      .from('product')
-      .insert([{ barcode, name, img_url: imageUrl, category, brand }])
+    await supabase
+      .from('products')
+      .insert({ barcode, name, img_url: imageUrl, category, brand })
 
     await supabase.from('supplies').insert([
       {
@@ -45,7 +45,7 @@ const handler: VercelApiHandler = async (
       },
     ])
 
-    res.status(200).json({ data, error })
+    res.status(200).json('OK')
 
     return
   }
