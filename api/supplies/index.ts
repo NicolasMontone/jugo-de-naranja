@@ -1,6 +1,7 @@
 import { VercelApiHandler, VercelRequest, VercelResponse } from '@vercel/node'
 import axios from 'axios'
-import { supabase } from '../../lib/supabase'
+// @ts-ignore
+import { supabase } from '../../lib/supabase.ts'
 import { ProductResponse } from '../../lib/types'
 
 const handler: VercelApiHandler = async (
