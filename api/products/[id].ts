@@ -4,24 +4,21 @@ import type {
   VercelResponse,
 } from '@vercel/node'
 import axios from 'axios'
-import { ProductResponse } from '../lib/types'
+import { ProductResponse } from '../../lib/types'
 
 const handler: VercelApiHandler = async (
   req: VercelRequest,
   res: VercelResponse,
 ) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'GET') {
     res.status(405).json({ error: 'Method not allowed' })
     return
   }
 
-  if (!req.body.code) {
-    res.status(400).json({ error: 'Missing code' })
-    return
-  }
+  const code = req.query.id as string
 
   const { data: productResponse } = await axios.get<ProductResponse>(
-    `https://go-upc.com/api/v1/code/${req.body.code}?key=${process.env.GO_UPC_API_KEY}`,
+    `https://go-upc.com/api/v1/code/${code}?key=${process.env.GO_UPC_API_KEY}`,
   )
 
   const product = productResponse.product
