@@ -1,13 +1,6 @@
 {
   "name": "jugo-de-naranja",
   "type": "module",
-  "scripts": {
-    "dev": "vercel dev",
-    "lint": "eslint . --ext .ts",
-    "format": "prettier --write .",
-    "build": "tsc --build",
-    "start": "vercel start"
-  },
   "devDependencies": {
     "eslint": "^8.45.0",
     "prettier": "^3.0.0",
